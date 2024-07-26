@@ -1,10 +1,11 @@
 import "./App.css";
-import { RandomFox } from "./components/RandomFox";
+import { random, RandomFox } from "./components/RandomFox";
 
 function App() {
+  const image = `https://randomfox.ca/images/${random()}.jpg`;
   return (
     <>
-      <RandomFox />
+      <RandomFox image={image} />
     </>
   );
 }

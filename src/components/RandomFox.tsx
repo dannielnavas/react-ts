@@ -5,16 +5,20 @@
 // };
 
 // random de un numero entre 1 y 123
-const random = () => {
+export const random = () => {
   return Math.floor(Math.random() * 123) + 1;
 };
 
-export const RandomFox = (): JSX.Element => {
-  const image = `https://randomfox.ca/images/${random()}.jpg`;
+type RandomFoxProps = {
+  image: string;
+  alt?: string;
+};
+
+export const RandomFox = ({ image, alt }: RandomFoxProps): JSX.Element => {
   return (
     <img
       src={image}
-      alt="Random fox"
+      alt={alt || "Random fox"}
       className="rounded-lg h-full w-full aspect-video"
     />
   );
