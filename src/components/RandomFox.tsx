@@ -1,5 +1,7 @@
 // import type { FC, FunctionComponent } from "react";
 
+import { useRef } from "react";
+
 // export const RandomFoxImpl = () => {
 //   return <img src="https://randomfox.ca/images/1.jpg" alt="Random fox" />;
 // };
@@ -15,8 +17,11 @@ type RandomFoxProps = {
 };
 
 export const RandomFox = ({ image, alt }: RandomFoxProps): JSX.Element => {
+  const node = useRef<HTMLImageElement>(null); // null es el valor inicial siempre inicializar para evitar errores
+
   return (
     <img
+      ref={node}
       src={image}
       alt={alt || "Random fox"}
       className="rounded-lg h-80 w-80 aspect-video"
