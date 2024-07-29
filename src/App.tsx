@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <div className="flex gap-2 flex-row flex-wrap">
+      <div className="flex gap-2 flex-row flex-wrap justify-center">
         {images.map(({ id, url }) => (
           <RandomFox key={id} image={url} />
         ))}

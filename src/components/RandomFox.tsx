@@ -19,7 +19,7 @@ export const RandomFox = ({ image, alt }: RandomFoxProps): JSX.Element => {
     <img
       src={image}
       alt={alt || "Random fox"}
-      className="rounded-lg h-full w-full aspect-video"
+      className="rounded-lg h-80 w-80 aspect-video"
     />
   );
 };
