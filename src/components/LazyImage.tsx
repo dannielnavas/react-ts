@@ -14,13 +14,14 @@ export const random = () => {
 
 type lazyImageProps = {
   alt?: string;
+  onLazyLoad?: (img: HTMLImageElement) => void;
 };
 
 type ImageNative = ImgHTMLAttributes<HTMLImageElement>;
 
 type Props = lazyImageProps & ImageNative;
 
-export const LazyImage = ({ src, ...imgProps }: Props): JSX.Element => {
+export const LazyImage = ({ src, onLazyLoad, ...imgProps }: Props): JSX.Element => {
   const node = useRef<HTMLImageElement>(null); // null es el valor inicial siempre inicializar para evitar errores
   const [currentSrc, setCurrentSrc] = useState<string>(
     "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
@@ -35,12 +36,15 @@ export const LazyImage = ({ src, ...imgProps }: Props): JSX.Element => {
       });
     });
 
-    if (node.current) observer.observe(node.current);
+    if (node.current) {
+      onLazyLoad && onLazyLoad(node.current);
+      observer.observe(node.current);
+    }
 
     return () => {
       observer.disconnect();
     };
-  }, [currentSrc]);
+  }, [currentSrc, onLazyLoad, src]);
 
   return (
     <img

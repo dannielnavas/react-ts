@@ -30,7 +30,12 @@ function App() {
       </button>
       <div className="flex gap-2 flex-row flex-wrap justify-center">
         {images.map(({ id, url }) => (
-          <LazyImage key={id} src={url} onClick={() => console.log("click")} />
+          <LazyImage
+            key={id}
+            src={url}
+            onClick={() => console.log("click")}
+            onLazyLoad={() => console.log("finalizo")}
+          />
         ))}
       </div>
     </>
