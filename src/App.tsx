@@ -1,7 +1,7 @@
 import type { MouseEventHandler } from "react";
 import { useState } from "react";
 import "./App.css";
-import { random, RandomFox } from "./components/RandomFox";
+import { LazyImage, random } from "./components/LazyImage";
 
 type ImageItems = {
   id: number;
@@ -30,7 +30,7 @@ function App() {
       </button>
       <div className="flex gap-2 flex-row flex-wrap justify-center">
         {images.map(({ id, url }) => (
-          <RandomFox key={id} image={url} />
+          <LazyImage key={id} src={url} onClick={() => console.log("click")} />
         ))}
       </div>
     </>

@@ -1,5 +1,6 @@
 // import type { FC, FunctionComponent } from "react";
 
+import type { ImgHTMLAttributes } from "react";
 import { useEffect, useRef, useState } from "react";
 
 // export const RandomFoxImpl = () => {
@@ -11,14 +12,17 @@ export const random = () => {
   return Math.floor(Math.random() * 123) + 1;
 };
 
-type RandomFoxProps = {
-  image: string;
+type lazyImageProps = {
   alt?: string;
 };
 
-export const RandomFox = ({ image, alt }: RandomFoxProps): JSX.Element => {
+type ImageNative = ImgHTMLAttributes<HTMLImageElement>;
+
+type Props = lazyImageProps & ImageNative;
+
+export const LazyImage = ({ src, ...imgProps }: Props): JSX.Element => {
   const node = useRef<HTMLImageElement>(null); // null es el valor inicial siempre inicializar para evitar errores
-  const [src, setSrc] = useState<string>(
+  const [currentSrc, setCurrentSrc] = useState<string>(
     "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
   );
   useEffect(() => {
@@ -26,7 +30,7 @@ export const RandomFox = ({ image, alt }: RandomFoxProps): JSX.Element => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           console.log("Intersecting");
-          setSrc(image);
+          if (src) setCurrentSrc(src);
         }
       });
     });
@@ -36,14 +40,14 @@ export const RandomFox = ({ image, alt }: RandomFoxProps): JSX.Element => {
     return () => {
       observer.disconnect();
     };
-  }, [image]);
+  }, [currentSrc]);
 
   return (
     <img
       ref={node}
-      src={src}
-      alt={alt || "Random fox"}
+      src={currentSrc}
       className="rounded-lg h-80 w-80 aspect-video bg-gray-500"
+      {...imgProps}
     />
   );
 };
