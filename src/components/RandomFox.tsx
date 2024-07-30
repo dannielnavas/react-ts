@@ -18,7 +18,7 @@ type RandomFoxProps = {
 
 export const RandomFox = ({ image, alt }: RandomFoxProps): JSX.Element => {
   const node = useRef<HTMLImageElement>(null); // null es el valor inicial siempre inicializar para evitar errores
-  const [src, setSrc] = useState(
+  const [src, setSrc] = useState<string>(
     "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
   );
   useEffect(() => {
