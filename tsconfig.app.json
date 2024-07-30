@@ -28,6 +28,8 @@
     "noImplicitReturns": true,
   },
   "include": [
-    "src"
+    "src",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

@@ -3,17 +3,12 @@ import { useState } from "react";
 import "./App.css";
 import { LazyImage, random } from "./components/LazyImage";
 
-type ImageItems = {
-  id: number;
-  url: string;
-};
-
 function App() {
-  const [images, setImages] = useState<ImageItems[]>([]);
+  const [images, setImages] = useState<IImageItems[]>([]);
 
   const addNewImage: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
-    const newImage: ImageItems = {
+    const newImage: IImageItems = {
       id: images.length + 1,
       url: `https://randomfox.ca/images/${random()}.jpg`,
     };
