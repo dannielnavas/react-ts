@@ -1,7 +1,7 @@
 import type { MouseEventHandler } from "react";
 import { useState } from "react";
 import "./App.css";
-import { LazyImage, random } from "./components/LazyImage";
+import { LazyImage, randomImage } from "./components/LazyImage";
 
 function App() {
   const [images, setImages] = useState<IImageItems[]>([]);
@@ -10,7 +10,7 @@ function App() {
     event.preventDefault();
     const newImage: IImageItems = {
       id: images.length + 1,
-      url: `https://randomfox.ca/images/${random()}.jpg`,
+      url: `https://randomfox.ca/images/${randomImage()}.jpg`,
     };
     setImages([...images, newImage]);
   };

@@ -1,5 +1,6 @@
 // import type { FC, FunctionComponent } from "react";
 
+import { random } from "lodash";
 import type { ImgHTMLAttributes } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -8,8 +9,9 @@ import { useEffect, useRef, useState } from "react";
 // };
 
 // random de un numero entre 1 y 123
-export const random = () => {
-  return Math.floor(Math.random() * 123) + 1;
+export const randomImage = () => {
+  // return Math.floor(Math.random() * 123) + 1;
+  return random(1, 123);
 };
 
 type lazyImageProps = {
