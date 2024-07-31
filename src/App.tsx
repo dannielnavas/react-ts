@@ -13,10 +13,17 @@ function App() {
       url: `https://randomfox.ca/images/${randomImage()}.jpg`,
     };
     setImages([...images, newImage]);
+    window.plausible("add_fox");
   };
 
   return (
     <>
+      <script
+        defer
+        data-domain="danniel.dev"
+        src="https://plausible.io/js/script.js"
+      ></script>
+
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-8"
         onClick={addNewImage}
